@@ -1,0 +1,27 @@
+<html ng-app="myApp">
+<head>
+    <script src="Js/angular.min.js"></script>
+     <script data-require="angular-route@*" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular-route.js"></script>
+     <script src="AngularBootstrap/Js/angular.min.js"></script>
+    <script src="Js/App.js"></script>
+    <script src="Js/Controllers/BazaCtrl.js"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/cyborg/bootstrap.css">
+<meta charset="utf-8">
+<title>Seminarski</title>
+</head>
+ <body ng-controller="flashMCtrl">
+     <div class="container">
+         <div class="row">
+     <div class="col-xs-12">
+         <h1 ><span class="glyphicon glyphicon-shopping-cart">PRODAVNICA</span></h1>
+     </div>
+         </div>
+         <div class="row">
+            <div class="col-xs-12">
+                <div ng-view></div>
+             </div>
+         </div>
+
+         </div>
+</body>
+</html>
