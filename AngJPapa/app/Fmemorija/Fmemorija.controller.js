@@ -21,9 +21,7 @@
         };
 
         function activate() {
-            return getFMem().then(function () {
-                console.log("ACTIVATE")
-            });
+            return getFMem().then(function () {});
         };
 
         function getFMem() {

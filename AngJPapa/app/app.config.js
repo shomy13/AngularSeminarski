@@ -17,6 +17,10 @@
                 templateUrl: 'Fmemorija/view-details-fmem.html',
                 controller: 'detailCtrl',
                 controllerAs: 'vm'
+            }).when('/admin', {
+                templateUrl: 'Admin/admin.html',
+                controller: 'adminCtrl',
+                controllerAs: 'vm'
             }).otherwise({
                 redirectTo: '/'
             })
