@@ -14,14 +14,13 @@
         };
 
         function login(user) {
-            return $http.post('http://localhost:8086/projekat/webapi/admin/admin', user)
+            return $http.post('http://localhost:8086/projekat/webapi/admin', user)
                 .then(postCompleted)
                 .catch(postFailed);
 
             function postCompleted(response) {
-                if (response.data === 'true') {
-                    vm.value = response.data;
-                    sessionService.set('user', vm.value);
+                if (response.data) {
+                 sessionService.set('token', response.data.token);
                     $location.path('/admin');
                 } else {
                     vm.msgTxt = "Pogresni podaci!";
@@ -35,12 +34,12 @@
         }
         
         function logout(){
-             sessionService.destroy('user');
+             sessionService.destroy('token');
             $location.path('/pocetna');
         }
         
         function islogged(){
-           if(sessionService.get('user')){
+           if(sessionService.get('token')){
                return true
         }else{
             return false

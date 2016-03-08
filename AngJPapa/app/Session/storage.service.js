@@ -12,15 +12,15 @@
         };
 
         function set(key, value) {
-            return sessionStorage.setItem(key, value);
+            return localStorage.setItem(key, value);
         }
 
         function get(Key) {
-            return sessionStorage.getItem(Key);
+            return localStorage.getItem(Key);
         }
 
         function destroy(key) {
-            return sessionStorage.removeItem(key);
+            return localStorage.removeItem(key);
         }
     }
 })();

@@ -17,7 +17,7 @@
         };
 
         function detailFmem(index) {
-            $location.path('/fmem/' + index.sifra);
+            $location.path('/fmem/' + index.id);
         };
 
         function activate() {

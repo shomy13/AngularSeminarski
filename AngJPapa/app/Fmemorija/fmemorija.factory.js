@@ -32,7 +32,7 @@
 
             function getComplete(response) {
                 for (i = 0; i < response.data.length; i++) {
-                    if (response.data[i].sifra === sifra) {
+                    if (response.data[i].id == sifra) {
                         return response.data[i];
                     };
                 };

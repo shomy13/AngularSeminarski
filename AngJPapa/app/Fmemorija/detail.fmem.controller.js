@@ -12,16 +12,16 @@
         function activate() {
             return get1FMem().then(function () {
                 console.log("ACTIVATE");
-
-                vm.naAkciji = function () {
+               vm.naAkciji = function (){
                     if (vm.flashMemory.akcija == 1) {
                         return "Da";
                     } else {
                         return "Ne";
                     }
-                };
+                }
 
             });
+            
         };
 
         function get1FMem() {
