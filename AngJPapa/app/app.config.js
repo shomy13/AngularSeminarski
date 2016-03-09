@@ -9,12 +9,76 @@
                 templateUrl: 'pocetna/pocetna.html',
                 controller: 'pocetnaCtrl',
                 controllerAs: 'vm'
-            }).when('/fmem', {
-                templateUrl: 'Fmemorija/view-list-fmem.html',
-                controller: 'flashMCtrl',
+            }).when('/FMem', {
+                templateUrl: 'Proizvodi/view-list.html',
+                controller: 'listCtrl',
                 controllerAs: 'vm'
-            }).when('/fmem/:index', {
-                templateUrl: 'Fmemorija/view-details-fmem.html',
+            }).when('/FMem/:index', {
+                templateUrl: 'Proizvodi/view-details.html',
+                controller: 'detailCtrl',
+                controllerAs: 'vm'
+            }).when('/GPU', {
+                templateUrl: 'Proizvodi/view-list.html',
+                controller: 'listCtrl',
+                controllerAs: 'vm'
+            }).when('/GPU/:index', {
+                templateUrl: 'Proizvodi/view-details.html',
+                controller: 'detailCtrl',
+                controllerAs: 'vm'
+            }).when('/Memory', {
+                templateUrl: 'Proizvodi/view-list.html',
+                controller: 'listCtrl',
+                controllerAs: 'vm'
+            }).when('/Memory/:index', {
+                templateUrl: 'Proizvodi/view-details.html',
+                controller: 'detailCtrl',
+                controllerAs: 'vm'
+            }).when('/MBoard', {
+                templateUrl: 'Proizvodi/view-list.html',
+                controller: 'listCtrl',
+                controllerAs: 'vm'
+            }).when('/MBoard/:index', {
+                templateUrl: 'Proizvodi/view-details.html',
+                controller: 'detailCtrl',
+                controllerAs: 'vm'
+            }).when('/Mouse', {
+                templateUrl: 'Proizvodi/view-list.html',
+                controller: 'listCtrl',
+                controllerAs: 'vm'
+            }).when('/Mouse/:index', {
+                templateUrl: 'Proizvodi/view-details.html',
+                controller: 'detailCtrl',
+                controllerAs: 'vm'
+            }).when('/Monitor', {
+                templateUrl: 'Proizvodi/view-list.html',
+                controller: 'listCtrl',
+                controllerAs: 'vm'
+            }).when('/Monitor/:index', {
+                templateUrl: 'Proizvodi/view-details.html',
+                controller: 'detailCtrl',
+                controllerAs: 'vm'
+            }).when('/CPU', {
+                templateUrl: 'Proizvodi/view-list.html',
+                controller: 'listCtrl',
+                controllerAs: 'vm'
+            }).when('/CPU/:index', {
+                templateUrl: 'Proizvodi/view-details.html',
+                controller: 'detailCtrl',
+                controllerAs: 'vm'
+            }).when('/RAM', {
+                templateUrl: 'Proizvodi/view-list.html',
+                controller: 'listCtrl',
+                controllerAs: 'vm'
+            }).when('/RAM/:index', {
+                templateUrl: 'Proizvodi/view-details.html',
+                controller: 'detailCtrl',
+                controllerAs: 'vm'
+            }).when('/Keyboard', {
+                templateUrl: 'Proizvodi/view-list.html',
+                controller: 'listCtrl',
+                controllerAs: 'vm'
+            }).when('/Keyboard/:index', {
+                templateUrl: 'Proizvodi/view-details.html',
                 controller: 'detailCtrl',
                 controllerAs: 'vm'
             }).when('/admin', {
@@ -26,9 +90,9 @@
             })
 
         $httpProvider.interceptors.push(httpInterceptor);
-        httpInterceptor.$inject = ['$q', '$location','sessionService'];
+        httpInterceptor.$inject = ['$q', '$location', 'sessionService'];
 
-        function httpInterceptor($q, $location,sessionService) {
+        function httpInterceptor($q, $location, sessionService) {
             var vm = this;
 
             return {

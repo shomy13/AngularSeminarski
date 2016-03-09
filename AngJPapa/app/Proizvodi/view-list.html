@@ -21,11 +21,11 @@
             <th><a href="" ng-click="sort='kapacitet';inverse=!inverse">Kapacitet</a></th>
             <th>Slika</th>
         </tr>
-        <tr ng-repeat="flashMemory in vm.flashMemories | filter:kljuc | orderBy:sort:inverse" ng-click="vm.detailFmem(flashMemory)">
-            <td>{{flashMemory.proizvodjac}}</td>
-            <td>{{flashMemory.model}}</td>
-            <td>{{flashMemory.kapacitet}}</td>
-            <td><img src="Img/{{flashMemory.slika}}" width="45" height="45"></td>
+        <tr ng-repeat="proizvod in vm.proizvod | filter:kljuc | orderBy:sort:inverse" ng-click="vm.detailFmem(proizvod)">
+            <td>{{proizvod.proizvodjac}}</td>
+            <td>{{proizvod.model}}</td>
+            <td>{{proizvod.kapacitet}}</td>
+            <td><img src="Img/{{proizvod.slika}}" width="45" height="45"></td>
         </tr>
     </table>
 </div>

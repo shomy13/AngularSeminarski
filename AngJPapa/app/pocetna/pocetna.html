@@ -22,34 +22,144 @@
     <div class="col-xs-1"></div>
     <div class="col-xs-10>">
         <div class="btn-group btn-group-justified">
-        <div class="btn-group">
-            <button class="btn btn-primary" ng-click="vm.redFmem()">Memorije</button>
-        </div>
-        <div class="btn-group">
-            <button class="btn btn-primary" ng-click="vm.redFmem()">Flash memorije</button>
-        </div>
             <div class="btn-group">
-            <button class="btn btn-primary" ng-click="vm.redFmem()">RAM memorije</button>
-        </div>
+                <button class="btn btn-primary" ng-click="vm.redMemory()">Memorije</button>
+            </div>
             <div class="btn-group">
-            <button class="btn btn-primary" ng-click="vm.redFmem()">Maticne ploce</button>
-        </div>
+                <button class="btn btn-primary" ng-click="vm.redFMem()">Flash memorije</button>
+            </div>
             <div class="btn-group">
-            <button class="btn btn-primary" ng-click="vm.redFmem()">Procesori</button>
-        </div>
+                <button class="btn btn-primary" ng-click="vm.redRAM()">RAM memorije</button>
+            </div>
             <div class="btn-group">
-            <button class="btn btn-primary" ng-click="vm.redFmem()">Graficke kartice</button>
-        </div>
+                <button class="btn btn-primary" ng-click="vm.redMBoard()">Maticne ploce</button>
+            </div>
             <div class="btn-group">
-            <button class="btn btn-primary" ng-click="vm.redFmem()">Misevi</button>
-        </div>
+                <button class="btn btn-primary" ng-click="vm.redCPU()">Procesori</button>
+            </div>
             <div class="btn-group">
-            <button class="btn btn-primary" ng-click="vm.redFmem()">Tastature</button>
-        </div>
+                <button class="btn btn-primary" ng-click="vm.redGPU()">Graficke kartice</button>
+            </div>
             <div class="btn-group">
-            <button class="btn btn-primary" ng-click="vm.redFmem()">Monitori</button>
-        </div>
+                <button class="btn btn-primary" ng-click="vm.redMouse()">Misevi</button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" ng-click="vm.redKBoard()">Tastature</button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" ng-click="vm.redMonitor()">Monitori</button>
+            </div>
         </div>
     </div>
     <div class="col-xs-1"></div>
+</div>
+<div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+        <carousel interval="vm.myInterval">
+            <slide ng-repeat="slide in vm.slides" active="slide.active">
+                <img ng-src="{{slide.image}}" width="1000" height="250">
+                <div class="carousel-caption">
+
+                </div>
+            </slide>
+        </carousel>
+
+    </div>
+</div>
+<div class="col-xs-1"></div>
+</div>
+<div class="row">
+    <br>
+</div>
+<div class="row">
+    <div class="col-xs-2">
+        <div>
+            <span class="label label-default">Popularni proizvodi</span>
+        </div>
+    </div>
+    <div class="col-xs-10">
+        <br>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-xs-12">
+        <table class="table table-responsive" ng-click="vm.detail(proizvod)">
+
+            <tr>
+                <td ng-repeat="proizvod in vm.proizvodiRnd" ng-if="$index <=4">
+                    <table>
+                        <tr>{{proizvod.proizvodjac}}</tr>
+                        <br>
+                        <tr>{{proizvod.model}}</tr>
+                        <br>
+                        <tr><img src="Img/{{proizvod.slika}}" height="150" width="150"></tr>
+                        <br>
+                        <button class="btn btn-warning" ng-click="vm.detail(proizvod)">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td ng-repeat="proizvod in vm.proizvodiRnd" ng-if="$index >4">
+                    <table>
+                        <tr>{{proizvod.proizvodjac}}</tr>
+                        <br>
+                        <tr>{{proizvod.model}}</tr>
+                        <br>
+                        <tr><img src="Img/{{proizvod.slika}}" height="150" width="150"></tr>
+                        <br>
+                        <button class="btn btn-warning" ng-click="vm.detail(proizvod)">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                    </table>
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+</div>
+<div class="row">
+    <br>
+</div>
+<div class="row">
+    <div class="col-xs-2">
+        <div>
+            <span class="label label-default">Popularni proizvodi na akciji</span>
+        </div>
+    </div>
+    <div class="col-xs-10">
+        <br>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-responsive">
+            <tr>
+                <td ng-repeat="proizvod in vm.proizvodiAkcija" ng-if="$index <=4">
+                    <table>
+                        <tr>{{proizvod.proizvodjac}}</tr>
+                        <br>
+                        <tr>{{proizvod.model}}</tr>
+                        <br>
+                        <tr><img src="Img/{{proizvod.slika}}" height="150" width="150"></tr>
+                        <button class="btn btn-warning" ng-click="vm.detail(proizvod)">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                    </table>
+                </td>
+
+            </tr>
+            <tr>
+                <td ng-repeat="proizvod in vm.proizvodiAkcija" ng-if="$index >4">
+                    <table>
+                        <tr>{{proizvod.proizvodjac}}</tr>
+                        <br>
+                        <tr>{{proizvod.model}}</tr>
+                        <br>
+                        <tr><img src="Img/{{proizvod.slika}}" height="150" width="150"></tr>
+                        <button class="btn btn-warning" ng-click="vm.detail(proizvod)">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
