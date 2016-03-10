@@ -11,7 +11,8 @@
             <br> Pass:
             <input type="password" class="form-control" ng-model="user.pass" required>
             <br>
-            <button type="submit" class="btn btn-sm btn-info" ng-disabled="form.$invalid" ng-click="vm.login(user)">LogIn</button> {{vm.msgTxt}}
+            <button type="submit" class="btn btn-sm btn-info" ng-disabled="form.$invalid" ng-click="vm.login(user)" ng-if="vm.logedIn()">LogIn</button>
+            <button type="submit" class="btn btn-sm btn-info" ng-click="vm.logOut()" ng-if="!vm.logedIn()">LogOut</button> {{vm.msgTxt}}
         </div>
     </form>
 </div>
@@ -23,31 +24,34 @@
     <div class="col-xs-10>">
         <div class="btn-group btn-group-justified">
             <div class="btn-group">
-                <button class="btn btn-primary" ng-click="vm.redMemory()">Memorije</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Komponente<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#/Memory">Memorija</a></li>
+                    <li><a href="#/RAM">RAM</a></li>
+                    <li><a href="#/MBoard">Maticna ploca</a></li>
+                    <li><a href="#/CPU">Procesor</a></li>
+                    <li><a href="#/GPU">Graficka kartica</a></li>
+                </ul>
             </div>
             <div class="btn-group">
-                <button class="btn btn-primary" ng-click="vm.redFMem()">Flash memorije</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Periferije<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#FMem">Flash Memorija</a></li>
+                    <li><a href="#Mouse">Mis</a></li>
+                    <li><a href="#Keyboard">Tastatura</a></li>
+                    <li><a href="#Monitor">Monitor</a></li>
+                </ul>
             </div>
             <div class="btn-group">
-                <button class="btn btn-primary" ng-click="vm.redRAM()">RAM memorije</button>
+                <button class="btn btn-primary">Kontakt</button>
             </div>
             <div class="btn-group">
-                <button class="btn btn-primary" ng-click="vm.redMBoard()">Maticne ploce</button>
+                <button class="btn btn-primary">O nama</button>
             </div>
             <div class="btn-group">
-                <button class="btn btn-primary" ng-click="vm.redCPU()">Procesori</button>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-primary" ng-click="vm.redGPU()">Graficke kartice</button>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-primary" ng-click="vm.redMouse()">Misevi</button>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-primary" ng-click="vm.redKBoard()">Tastature</button>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-primary" ng-click="vm.redMonitor()">Monitori</button>
+                <button class="btn btn-primary">Korisnik</button>
             </div>
         </div>
     </div>
@@ -58,13 +62,12 @@
     <div class="col-xs-10">
         <carousel interval="vm.myInterval">
             <slide ng-repeat="slide in vm.slides" active="slide.active">
-                <img ng-src="{{slide.image}}" width="1000" height="250">
+                <img ng-src="{{slide.image}}" height="250">
                 <div class="carousel-caption">
 
                 </div>
             </slide>
         </carousel>
-
     </div>
 </div>
 <div class="col-xs-1"></div>
@@ -90,32 +93,47 @@
             <tr>
                 <td ng-repeat="proizvod in vm.proizvodiRnd" ng-if="$index <=4">
                     <table>
-                        <tr>{{proizvod.proizvodjac}}</tr>
+                        <tr>
+                            <td>{{proizvod.proizvodjac}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{proizvod.model}}</td>
+                        </tr>
                         <br>
-                        <tr>{{proizvod.model}}</tr>
-                        <br>
-                        <tr><img src="Img/{{proizvod.slika}}" height="150" width="150"></tr>
-                        <br>
-                        <button class="btn btn-warning" ng-click="vm.detail(proizvod)">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                        <tr>
+                            <td><img src="Img/{{proizvod.slika}}" height="150" width="180"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn btn-warning" ng-click="vm.detail(proizvod)" ng-if="!vm.admin()">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                               
+                            </td>
+                        </tr>
                     </table>
                 </td>
             </tr>
-
             <tr>
                 <td ng-repeat="proizvod in vm.proizvodiRnd" ng-if="$index >4">
                     <table>
-                        <tr>{{proizvod.proizvodjac}}</tr>
+                        <tr>
+                            <td>{{proizvod.proizvodjac}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{proizvod.model}}</td>
+                        </tr>
                         <br>
-                        <tr>{{proizvod.model}}</tr>
-                        <br>
-                        <tr><img src="Img/{{proizvod.slika}}" height="150" width="150"></tr>
-                        <br>
-                        <button class="btn btn-warning" ng-click="vm.detail(proizvod)">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                        <tr>
+                            <td><img src="Img/{{proizvod.slika}}" height="150" width="180"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn btn-warning" ng-click="vm.detail(proizvod)" ng-if="!vm.admin()">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                          
+                            </td>
+                        </tr>
                     </table>
                 </td>
             </tr>
-
-
         </table>
     </div>
 </div>
@@ -138,25 +156,44 @@
             <tr>
                 <td ng-repeat="proizvod in vm.proizvodiAkcija" ng-if="$index <=4">
                     <table>
-                        <tr>{{proizvod.proizvodjac}}</tr>
+                        <tr>
+                            <td>{{proizvod.proizvodjac}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{proizvod.model}}</td>
+                        </tr>
                         <br>
-                        <tr>{{proizvod.model}}</tr>
-                        <br>
-                        <tr><img src="Img/{{proizvod.slika}}" height="150" width="150"></tr>
-                        <button class="btn btn-warning" ng-click="vm.detail(proizvod)">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                        <tr>
+                            <td><img src="Img/{{proizvod.slika}}" height="150" width="180"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn btn-warning" ng-click="vm.detail(proizvod)" ng-if="!vm.admin()">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                               
+                            </td>
+                        </tr>
                     </table>
                 </td>
-
             </tr>
             <tr>
                 <td ng-repeat="proizvod in vm.proizvodiAkcija" ng-if="$index >4">
                     <table>
-                        <tr>{{proizvod.proizvodjac}}</tr>
+                        <tr>
+                            <td>{{proizvod.proizvodjac}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{proizvod.model}}</td>
+                        </tr>
                         <br>
-                        <tr>{{proizvod.model}}</tr>
-                        <br>
-                        <tr><img src="Img/{{proizvod.slika}}" height="150" width="150"></tr>
-                        <button class="btn btn-warning" ng-click="vm.detail(proizvod)">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                        <tr>
+                            <td><img src="Img/{{proizvod.slika}}" height="150" width="180"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn btn-warning" ng-click="vm.detail(proizvod)" ng-if="!vm.admin()">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
+                              
+                            </td>
+                        </tr>
                     </table>
                 </td>
             </tr>

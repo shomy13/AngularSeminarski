@@ -10,7 +10,7 @@
         $rootScope.$on('$routeChangeStart', routeChangeStart);
 
         function routeChangeStart() {
-            if (routespermission.indexOf($location.path()) != -1 && !loginService.islogged()) {
+            if (routespermission.indexOf($location.path()) != -1 && !loginService.isAdmin()) {
                 $location.path('/pocetna');
             }
         }

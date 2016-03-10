@@ -2,23 +2,24 @@
     angular
         .module('app')
         .controller('listCtrl', listCtrl);
-    listCtrl.$inject = ['$location', 'proizvodiService']
+    listCtrl.$inject = ['$location', 'proizvodiService', 'loginService']
 
-    function listCtrl($location, proizvodiService) {
+    function listCtrl($location, proizvodiService, loginService) {
         var vm = this;
         vm.sort = 'sifra';
         vm.inverse = true;
+        vm.admin = admin;
         var vrsta = $location.url();
         activate(vrsta);
         vm.back = back;
-        vm.detailFmem = detailFmem;
+        vm.detail = detail;
 
         function back() {
             $location.path('/');
         };
 
-        function detailFmem(index) {
-            $location.path('/'+index.vrsta+ '/'+ index.id);
+        function detail(object) {
+            $location.path('/' + object.vrsta + '/' + object.id);
         };
 
         function activate(vrsta) {
@@ -33,6 +34,11 @@
                 });
         };
 
-
+        function admin() {
+            if (loginService.isAdmin())
+                return true
+            else
+                return false
+        }
     };
 })();

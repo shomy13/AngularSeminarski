@@ -7,10 +7,12 @@
     function loginService($http, $location, sessionService) {
         var vm = this;
         vm.value = '';
+        vm.admin = '';
         return {
             login: login,
             logout : logout,
-            islogged : islogged
+            islogged : islogged,
+            isAdmin : isAdmin
         };
 
         function login(user) {
@@ -21,7 +23,13 @@
             function postCompleted(response) {
                 if (response.data) {
                  sessionService.set('token', response.data.token);
+                    if(response.data.admin==1){
                     $location.path('/admin');
+                        vm.admin = true;
+                    }else{
+                        vm.msgTxt = "Uspesna prijava!"
+                        return vm.msgTxt;
+                    }
                 } else {
                     vm.msgTxt = "Pogresni podaci!";
                     return vm.msgTxt;
@@ -35,6 +43,7 @@
         
         function logout(){
              sessionService.destroy('token');
+            vm.admin = false;
             $location.path('/pocetna');
         }
         
@@ -44,6 +53,13 @@
         }else{
             return false
         }}
+        
+        function isAdmin(){
+            if(vm.admin)
+                return true
+            else
+                return false
+        }
     }
 
 })();
