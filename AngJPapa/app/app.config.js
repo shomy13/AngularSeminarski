@@ -85,6 +85,10 @@
                 templateUrl: 'Admin/admin.html',
                 controller: 'adminCtrl',
                 controllerAs: 'vm'
+            }).when('/korisnik', {
+                templateUrl: 'login/korisnik.html',
+                controller: 'korisnikCtrl',
+                controllerAs: 'vm'
             }).otherwise({
                 redirectTo: '/'
             })

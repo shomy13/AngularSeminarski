@@ -13,9 +13,9 @@
             return getOne().then(function () {
                 vm.naAkciji = function () {
                     if (vm.proizvodi.akcija == 1) {
-                        return "Da";
+                        return 'Da';
                     } else {
-                        return "Ne";
+                        return 'Ne';
                     }
                 }
             });

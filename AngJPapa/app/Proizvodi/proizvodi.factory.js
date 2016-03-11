@@ -23,7 +23,7 @@
             }
             
             function getFailed(){
-                console.log("greska u komunikacji sa bazom")
+                console.log('greska u komunikacji sa bazom')
             }
         
         };
@@ -38,7 +38,7 @@
             }
             
             function getFailed(){
-                console.log("greska u komunikacji sa bazom")
+                console.log('greska u komunikacji sa bazom')
             }
             
         };
@@ -53,7 +53,7 @@
             }
             
             function getFailed(){
-                console.log("greska u komunikaciji sa bazom")
+                console.log('greska u komunikaciji sa bazom')
             }
         };
         
@@ -68,7 +68,7 @@
             }
             
           function getFailed(){
-              console.log("greska u komunikaciji sa bazom");
+              console.log('greska u komunikaciji sa bazom');
           }  
         };
         

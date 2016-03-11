@@ -12,6 +12,8 @@
         vm.logOut = logOut;
         vm.detail = detail;
         vm.logedIn = logedIn;
+        vm.signUp = signUp;
+        vm.RedKorisnik = RedKorisnik;
         activatePRnd();
         activatePAkcija();
         CarouselCtrl();
@@ -31,7 +33,8 @@
 
         function logOut() {
             loginService.logout();
-        }
+       
+        };
 
         function activatePRnd() {
             return getProizvodRnd().then(function () {});
@@ -57,7 +60,7 @@
                         return vm.proizvodiAkcija;
                     })
             }
-        }
+        };
 
         function detail(object) {
             $location.path('/' + object.vrsta + '/' + object.id);
@@ -82,16 +85,28 @@
                     image: 'Img/Technology-Partners-Banner-1000x250.jpg'
     }
   ];
-        }
+        };
 
         function logedIn() {
             if (loginService.islogged())
                 return false
             else
                 return true
+        };
+        function signUp(user){
+            return signUpFun(user).then(function(){});
+            
+            function signUpFun(user){
+                return loginService.signUp(user)
+                    .then(function(data){
+                    vm.msgTxt = data;
+                    return vm.msgTxt;
+                })
+            }
+        };
+        
+        function RedKorisnik(){
+            $location.path('/korisnik')
         }
-
-       
-
     };
 })();
