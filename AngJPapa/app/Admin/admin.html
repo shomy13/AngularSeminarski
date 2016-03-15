@@ -1,6 +1,102 @@
 <div>
-ADMINSKA STRANICA
-    <div class="form-group">
-    <button type="submit" class="btn btn-info" ng-click="vm.logout()">Log Out</button>
+    <div class="row">
+
+        <div>
+            <h1 style="text-align:center">ADMINSKA STRANICA</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-5">
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        Dodaj<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-click="vm.GPU()"><a href="">GPU</a></li>
+                        <li ng-click="vm.CPU()"><a href="">CPU</a></li>
+                        <li ng-click="vm.Memory()"><a href="">Memorija</a></li>
+                        <li ng-click="vm.MBoard()"><a href="">Maticna ploca</a></li>
+                        <li ng-click="vm.RAM()"><a href="">RAM</a></li>
+                        <li ng-click="vm.Monitor()"><a href="">Monitor</a></li>
+                        <li ng-click="vm.Mouse()"><a href="">Mis</a></li>
+                        <li ng-click="vm.Keyboard()"><a href="">Tastatura</a></li>
+                        <li ng-click="vm.FMem()"><a href="">Flash Memorija</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        Korisnici<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-click="nesto()"><a href="">Dodaj</a></li>
+                        <li ng-click="nesto()"><a href="">Ispisi</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-info" ng-click="vm.logout()">Log Out</button>
+                </div>
+            </div>
         </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+            <form role="form" name="form" ng-show="vm.proizvod()">
+                <div class="form-group">
+                    <label for="usr">Vrsta:</label>
+                    <input type="text" class="form-control" required ng-model="proizvod.vrsta" placeholder="{{vm.vrsta}}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Proizvodjac:</label>
+                    <input type="text" class="form-control" required ng-model="proizvod.proizvodjac">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Model:</label>
+                    <input type="text" class="form-control" required ng-model="proizvod.model">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Cena:</label>
+                    <input type="text" class="form-control" required ng-model="proizvod.cena">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Garancija:</label>
+                    <input type="text" class="form-control" required ng-model="proizvod.garancija">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Slika:</label>
+                    <input type="text" class="form-control" required ng-model="proizvod.slika">
+                </div>
+                <div class="form-group">
+                    <label for="sel1">Akcija:</label>
+                    <select class="form-control" id="sel1" required ng-model="proizvod.akcija">
+                        <option>0</option>
+                        <option>1</option>
+                    </select>
+                </div>
+                <div class="form-group" ng-show="vm.tip()">
+                    <label for="usr">Tip:</label>
+                    <input type="text" class="form-control" ng-model="proizvod.tip" >
+                </div>
+                <div class="form-group" ng-show="vm.kapacitet()">
+                    <label for="usr">Kapacitet:</label>
+                    <input type="text" class="form-control" ng-model="proizvod.kapacitet" >
+                </div>
+                <div class="form-group" ng-show="vm.socket()">
+                    <label for="usr">Socket:</label>
+                    <input type="text" class="form-control" ng-model="proizvod.socket" >
+                </div>
+                <div class="form-group" ng-show="vm.dijagonala()">
+                    <label for="usr">Dijagonala:</label>
+                    <input type="text" class="form-control" ng-model="proizvod.dijagonala" >
+                </div>
+                <div class="form-group" ng-show="vm.takt()">
+                    <label for="usr">Takt:</label>
+                    <input type="text" class="form-control" ng-model="proizvod.takt" >
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-sm btn-info" ng-click="vm.dodaj(proizvod)" >Dodaj</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

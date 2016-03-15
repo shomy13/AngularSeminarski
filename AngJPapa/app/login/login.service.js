@@ -7,14 +7,13 @@
     function loginService($http, $location, sessionService) {
         var vm = this;
         vm.value = '';
-        vm.admin = '';
         return {
             login: login,
             logout: logout,
             islogged: islogged,
             isAdmin: isAdmin,
             signUp: signUp,
-            korisnikById : korisnikById,
+            korisnikById: korisnikById,
         };
 
         function login(user) {
@@ -26,17 +25,11 @@
                 if (response.data) {
                     sessionService.set('token', response.data.token);
                     sessionService.set('id', response.data.id);
+                    sessionService.set('admin', response.data.admin)
                     if (response.data.admin == 1) {
                         $location.path('/admin');
-                        vm.admin = true;
-                        vm.LiKorisnik = response.data.id;
-                       
                     } else {
                         vm.msgTxt = 'Uspesna prijava!'
-                       
-                         vm.LiKorisnik = response.data.id;
-                           console.log(vm.LiKorisnik);
-                        console.log(response.data.id);
                         return vm.msgTxt;
                     }
                 } else {
@@ -51,10 +44,9 @@
         };
 
         function logout() {
-           sessionService.destroy('token');
-              sessionService.destroy('id');
-            vm.admin = false;
-          
+            sessionService.destroy('token');
+            sessionService.destroy('id');
+            sessionService.destroy('admin');
             $location.path('/pocetna');
         };
 
@@ -67,46 +59,48 @@
         };
 
         function isAdmin() {
-            if (vm.admin)
+            if (sessionService.get('admin')=='1')
                 return true
             else
                 return false
         };
-        
-        function signUp(user){
+
+        function signUp(user) {
             return $http.put('http://localhost:8086/projekat/webapi/korisnik', user)
                 .then(putCompleted)
                 .catch(putFailed);
-            
-            function putCompleted(response){
-                if(response.data=='true'){
+
+            function putCompleted(response) {
+                if (response.data == 'true') {
                     vm.msgTxt = 'Uspesna Registracija'
                     return vm.msgTxt;
-                }else{
-                   vm.msgTxt = 'Korisnik vec postoji!'
+                } else {
+                    vm.msgTxt = 'Korisnik vec postoji!'
                     return vm.msgTxt;
                 }
-                
+
             }
-            
-            function putFailed(){
-                console.log('greska u komunikaciji sa bazom')
-            }
-        };
-        
-        function korisnikById(id){
-            return $http.get('http://localhost:8086/projekat/webapi/korisnik/'+id)
-                .then(getCompleted)
-                .catch(getFailed);
-            function getCompleted(response){
-                return response.data;
-            }
-            function getFailed(){
+
+            function putFailed() {
                 console.log('greska u komunikaciji sa bazom')
             }
         };
 
-       
+        function korisnikById(id) {
+            return $http.get('http://localhost:8086/projekat/webapi/korisnik/' + id)
+                .then(getCompleted)
+                .catch(getFailed);
+
+            function getCompleted(response) {
+                return response.data;
+            }
+
+            function getFailed() {
+                console.log('greska u komunikaciji sa bazom')
+            }
+        };
+
+
     }
 
 })();
