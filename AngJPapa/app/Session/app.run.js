@@ -5,7 +5,7 @@
     run.$inject = ['$rootScope', '$location', 'loginService'];
 
     function run($rootScope, $location, loginService) {
-        var routespermission = ['/admin'];
+        var routespermission = ['/admin', '/admin/users'];
 
         $rootScope.$on('$routeChangeStart', routeChangeStart);
 

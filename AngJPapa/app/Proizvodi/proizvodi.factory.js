@@ -6,6 +6,8 @@
     proizvodiService.$inject = ['$http'];
 
     function proizvodiService($http) {
+        var vm = this;
+        vm.msgTxt = '';
         return {
             proizvodiRnd: proizvodiRnd,
             proizvodiAkcija: proizvodiAkcija,
@@ -79,12 +81,14 @@
                 .then(putComplete)
                 .catch(putFailed);
 
-            function putComplete() {
-                console.log("uspesno")
+            function putComplete(response) {
+//                vm.msgTxt = 'Proizvod dodat!'
+//                return vm.msgTxt;
+                 console.log(response)
             }
 
             function putFailed() {
-                console.log("neuspesno")
+                console.log('Greska u komunikaciji sa bazom')
             }
 
         };

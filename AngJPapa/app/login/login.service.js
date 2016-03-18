@@ -13,7 +13,8 @@
             islogged: islogged,
             isAdmin: isAdmin,
             signUp: signUp,
-            korisnikById: korisnikById,
+            korisnikById: korisnikById
+
         };
 
         function login(user) {
@@ -59,7 +60,7 @@
         };
 
         function isAdmin() {
-            if (sessionService.get('admin')=='1')
+            if (sessionService.get('admin') == '1')
                 return true
             else
                 return false
@@ -99,7 +100,6 @@
                 console.log('greska u komunikaciji sa bazom')
             }
         };
-
 
     }
 

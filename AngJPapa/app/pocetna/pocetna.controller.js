@@ -2,9 +2,9 @@
     angular
         .module('app')
         .controller('pocetnaCtrl', pocetnaCtrl);
-    pocetnaCtrl.$inject = ['$location', 'loginService', 'proizvodiService', 'loginService']
+    pocetnaCtrl.$inject = ['$location', 'loginService', 'proizvodiService']
 
-    function pocetnaCtrl($location, loginService, proizvodiService, loginService) {
+    function pocetnaCtrl($location, loginService, proizvodiService) {
         var vm = this;
         vm.msgTxt = '';
 
@@ -14,6 +14,8 @@
         vm.logedIn = logedIn;
         vm.signUp = signUp;
         vm.RedKorisnik = RedKorisnik;
+        vm.showAdmin = showAdmin;
+        vm.redAdmin = redAdmin;
         activatePRnd();
         activatePAkcija();
         CarouselCtrl();
@@ -24,8 +26,16 @@
             function loginFun(user) {
                 return loginService.login(user)
                     .then(function (data) {
-                        vm.msgTxt = data;
+                    vm.msgTxt = data;
+                    if(data == 'Uspesna prijava!'){
+                        user.email = '';
+                        user.pass = '';
                         return vm.msgTxt;
+                    }else{
+                        return vm.msgTxt;
+                    }
+                        
+                        
 
                     })
             }
@@ -33,7 +43,7 @@
 
         function logOut() {
             loginService.logout();
-       
+
         };
 
         function activatePRnd() {
@@ -93,20 +103,35 @@
             else
                 return true
         };
-        function signUp(user){
-            return signUpFun(user).then(function(){});
-            
-            function signUpFun(user){
+
+        function signUp(user) {
+            return signUpFun(user).then(function () {});
+
+            function signUpFun(user) {
                 return loginService.signUp(user)
-                    .then(function(data){
-                    vm.msgTxt = data;
-                    return vm.msgTxt;
-                })
+                    .then(function (data) {
+                        vm.msgTxt = data;
+                        return vm.msgTxt;
+                    })
             }
         };
-        
-        function RedKorisnik(){
+
+        function RedKorisnik() {
             $location.path('/korisnik')
         }
+
+        function showAdmin() {
+            if (loginService.isAdmin())
+                return true;
+            else
+                return false;
+        }
+        
+        function redAdmin(){
+            $location.path('/admin')
+        }
+
     };
+
+
 })();

@@ -2,12 +2,15 @@
     angular
         .module('app')
         .controller('adminCtrl', adminCtrl);
-    adminCtrl.$inject = ['loginService', 'proizvodiService'];
+    adminCtrl.$inject = [ 'proizvodiService', '$location', 'korisnikService', 'loginService'];
 
-    function adminCtrl(loginService, proizvodiService) {
+    function adminCtrl( proizvodiService, $location, korisnikService, loginService) {
         var vm = this;
-        vm.dodaj = dodaj;
+        vm.dodajP = dodajP;
+        vm.dodajA = dodajA;
         vm.logout = logout;
+        vm.admin = admin;
+        vm.redUsers = redUsers;
         vm.GPU = GPU;
         vm.CPU = CPU;
         vm.Memory = Memory;
@@ -18,8 +21,11 @@
         vm.Keyboard = Keyboard;
         vm.FMem = FMem;
         vm.proizvod = proizvod;
-        vm.show = false;
-        vm.vrsta = '';
+        vm.showProizvod = showProizvod;
+        vm.korisnik = korisnik;
+        vm.showKorisnik = showKorisnik;
+        vm.showP = false;
+        vm.showK = false;
         vm.tip = tip;
         vm.showtip = false;
         vm.kapacitet = kapacitet;
@@ -30,111 +36,139 @@
         vm.showdijagonala = false;
         vm.takt = takt;
         vm.showtakt = false;
+        vm.redPocetna = redPocetna;
 
         function logout() {
             loginService.logout();
         }
 
-        function dodaj(proizvod) {
-            proizvodiService.proizvodAdd(proizvod);
+        function dodajP(proizvod) {
+            return add(proizvod).then(function () {});
+
+            function add(proizvod) {
+                return proizvodiService.proizvodAdd(proizvod)
+                    .then(function (data) {
+                        vm.msgTxt = data;
+                        return vm.msgTxt;
+                    });
+            }
+        };
+        
+        function dodajA(korisnik){
+             return add(korisnik).then(function () {});
+
+            function add(korisnik) {
+                return korisnikService.addAdmin(korisnik)
+                    .then(function (data) {
+                        vm.msgTxt = data;
+                    if(vm.msgTxt == 'Uspesno dodat admin!'){
+                        
+                    
+                        korisnik.ime = '';
+                        korisnik.prezime = '';
+                        korisnik.email = '';
+                        korisnik.pass = '';
+                        return vm.msgTxt;
+                    }else{
+                        korisnik.email = '';
+                        return vm.msgTxt;
+                    }
+                    });
+            }
+        };
+        
+        function admin(){
+            return '1';
+        }
+        
+        function redUsers(){
+            $location.path('/users')
         }
 
         function GPU() {
-            vm.show = true;
             vm.showtip = false;
             vm.showsocket = false;
             vm.showdijagonala = false;
             vm.showtakt = false;
             vm.showkapacitet = true;
-            return vm.vrsta = 'GPU';
         }
 
         function CPU() {
-            vm.show = true;
             vm.showtip = true;
             vm.showsocket = true;
             vm.showtakt = true;
             vm.showdijagonala = false;
             vm.showkapacitet = false;
-            return vm.vrsta = 'CPU';
         }
 
         function Memory() {
-            vm.show = true;
             vm.showtip = true;
             vm.showkapacitet = true;
             vm.showsocket = false;
             vm.showdijagonala = false;
             vm.showtakt = false;
-
-            return vm.vrsta = 'Memory';
         }
 
         function MBoard() {
-            vm.show = true;
             vm.showkapacitet = true;
             vm.showsocket = true;
             vm.showtip = false;
             vm.showdijagonala = false;
             vm.showtakt = false;
-            return vm.vrsta = 'MBoard';
         }
 
         function RAM() {
-            vm.show = true;
             vm.showtip = true;
             vm.showkapacitet = true;
             vm.showtakt = true;
             vm.showsocket = false;
             vm.showdijagonala = false;
-            return vm.vrsta = 'RAM';
         }
 
         function Monitor() {
-            vm.show = true;
             vm.showtip = true;
             vm.showdijagonala = true;
             vm.showsocket = false;
             vm.showtakt = false;
             vm.showkapacitet = false;
-            return vm.vrsta = 'Monitor';
         }
 
         function Mouse() {
-            vm.show = true;
             vm.showtip = true;
             vm.showsocket = false;
             vm.showdijagonala = false;
             vm.showtakt = false;
             vm.showkapacitet = false;
-            return vm.vrsta = 'Mouse';
         }
 
         function Keyboard() {
-            vm.show = true;
             vm.showtip = true;
             vm.showsocket = false;
             vm.showdijagonala = false;
             vm.showtakt = false;
-            vm.showkapacitet = false;
-            return vm.vrsta = 'Keyboard';
+            vm.showkapacitet = false; 
         }
 
         function FMem() {
-            vm.show = true;
             vm.showkapacitet = true;
             vm.showtip = false;
             vm.showsocket = false;
             vm.showdijagonala = false;
             vm.showtakt = false;
-            return vm.vrsta = 'Fmem';
         }
 
         function proizvod() {
-            if (vm.show) {
+            if (vm.showP)
                 return true;
-            }
-            return false;
+            else
+                return false;
+        }
+
+        function korisnik() {
+            if (vm.showK)
+                return true;
+            else
+                return false;
         }
 
         function tip() {
@@ -170,6 +204,20 @@
                 return true;
             else
                 return false;
+        }
+
+        function redPocetna() {
+            $location.path('/pocetna')
+        }
+
+        function showProizvod() {
+            vm.showP = true;
+            vm.showK = false;
+        }
+
+        function showKorisnik() {
+            vm.showK = true;
+            vm.showP = false;
         }
     }
 })();

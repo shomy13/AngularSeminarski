@@ -7,7 +7,7 @@
     <form role="form" name="form">
         <div class="col-sm-3" class="form-group">
             User:
-            <input type="text" class="form-control" ng-model="user.email" required>
+            <input type="email" class="form-control" ng-model="user.email" required>
             <br> Pass:
             <input type="password" class="form-control" ng-model="user.pass" required>
             <br>
@@ -53,6 +53,9 @@
             </div>
             <div class="btn-group">
                 <button class="btn btn-primary" ng-click="vm.RedKorisnik()">Korisnik</button>
+            </div>
+            <div class="btn-group" ng-show=vm.showAdmin()>
+                <button class="btn btn-primary" ng-click="vm.redAdmin()">Admin</button>
             </div>
         </div>
     </div>
@@ -107,7 +110,7 @@
                         <tr>
                             <td>
                                 <button class="btn btn-warning" ng-click="vm.detail(proizvod)" ng-if="!vm.admin()">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
-                               
+
                             </td>
                         </tr>
                     </table>
@@ -129,7 +132,7 @@
                         <tr>
                             <td>
                                 <button class="btn btn-warning" ng-click="vm.detail(proizvod)" ng-if="!vm.admin()">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
-                          
+
                             </td>
                         </tr>
                     </table>
@@ -170,7 +173,7 @@
                         <tr>
                             <td>
                                 <button class="btn btn-warning" ng-click="vm.detail(proizvod)" ng-if="!vm.admin()">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
-                               
+
                             </td>
                         </tr>
                     </table>
@@ -192,7 +195,7 @@
                         <tr>
                             <td>
                                 <button class="btn btn-warning" ng-click="vm.detail(proizvod)" ng-if="!vm.admin()">Detaljnije <span class="glyphicon glyphicon-forward"></span></button>
-                              
+
                             </td>
                         </tr>
                     </table>

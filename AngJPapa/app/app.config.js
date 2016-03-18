@@ -85,6 +85,10 @@
                 templateUrl: 'Admin/admin.html',
                 controller: 'adminCtrl',
                 controllerAs: 'vm'
+            }).when('/admin/users', {
+                templateUrl: 'Admin/admin.users.html',
+                controller: 'adminCtrl',
+                controllerAs: 'vm'
             }).when('/korisnik', {
                 templateUrl: 'login/korisnik.html',
                 controller: 'korisnikCtrl',
